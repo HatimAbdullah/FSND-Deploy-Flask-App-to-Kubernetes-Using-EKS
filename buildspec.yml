@@ -35,6 +35,7 @@ phases:
       - echo $AWS_ACCESS_KEY_ID
       - echo $CREDENTIALS
       - aws eks update-kubeconfig --name $EKS_CLUSTER_NAME
+      - cat simple_jwt_api.yml
       - kubectl apply -f simple_jwt_api.yml
       - printf '[{"name":"simple_jwt_api","imageUri":"%s"}]' $REPOSITORY_URI:$TAG > build.json
       - pwd
