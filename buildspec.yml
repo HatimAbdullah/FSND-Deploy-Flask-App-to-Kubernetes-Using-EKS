@@ -38,7 +38,6 @@ phases:
       - cat simple_jwt_api.yml
       - kubectl config view
       - aws sts get-caller-identity
-      - aws sts assume-role --role-arn UdacityFlaskDeployCBKubectlRole-arn --role-session-name codebuild-kubectl
       - kubectl describe configmap -n kube-system aws-auth
       - kubectl apply -f simple_jwt_api.yml
       - printf '[{"name":"simple_jwt_api","imageUri":"%s"}]' $REPOSITORY_URI:$TAG > build.json
