@@ -20,6 +20,7 @@ phases:
       - wget https://www.python.org/ftp/python/3.6.7/Python-3.6.7.tgz
       - apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev  libncursesw5-dev xz-utils tk-dev
       - tar xvf Python-3.6.7.tgz
+      - pwd
       - cd Python-3.6.7/
       - ./configure --enable-optimizations --with-ensurepip=install
       - make altinstall
@@ -30,7 +31,7 @@ phases:
       - update-alternatives --install /usr/bin/python python /usr/local/bin/python3.6 2
       - pip3.6 install --upgrade awscli
       - pip3.6 install --upgrade pip
-      - cd 
+      - cd ~
   pre_build:
       commands:
         - TAG="$REPOSITORY_NAME.$REPOSITORY_BRANCH.$ENVIRONMENT_NAME.$(date +%Y-%m-%d.%H.%M.%S).$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)"
