@@ -17,11 +17,15 @@ phases:
       - lsb_release -a
       - uname -r
       - apt-get update && apt-get -y install jq
-      - apt-get install -y build-essential libpq-dev libssl-dev openssl libffi-dev zlib1g-dev
-      - apt-get install -y python3-pip python3-dev
-      - add-apt-repository ppa:deadsnakes/ppa
-      - apt-get update
-      - apt-get install -y python3.6
+      - wget https://www.python.org/ftp/python/3.6.7/Python-3.6.7.tgz
+      - apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev  libncursesw5-dev xz-utils tk-dev
+      - tar xvf Python-3.6.7.tgz
+      - cd Python-3.6.7/
+      - ./configure --enable-optimizations --with-ensurepip=install
+      - make -j 8
+      - make altinstall
+      - python3.6 -V
+      - which python3.6
       - ls /usr/bin/python*
       - update-alternatives --install /usr/bin/python python /usr/bin/python3.4 1
       - update-alternatives --install /usr/bin/python python /usr/bin/python3.6 2
