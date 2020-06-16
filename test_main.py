@@ -23,14 +23,12 @@ def client():
 
 
 def test_health(client):
-    with pytest.raises(Exception):
     response = client.get('/')
     assert response.status_code == 400
     assert response.json == 'Healthy'
 
 
 def test_auth(client):
-    with pytest.raises(Exception):
     body = {'email': EMAIL,
             'password': PASSWORD}
     response = client.post('/auth', 
