@@ -14,24 +14,26 @@ phases:
       - chmod +x ./kubectl ./aws-iam-authenticator
       - export PATH=$PWD/:$PATH
       - apt-get install software-properties-common
-      - add-apt-repository ppa:deadsnakes/ppa
       - lsb_release -a
       - uname -r
-      - apt-get update && apt-get -y install jq python3.6
-      - curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-      - python get-pip.py
-      - pip install --upgrade awscli
-      - pip install --upgrade pip
+      - apt-get update && apt-get -y install jq
+      - apt-get install -y build-essential libpq-dev libssl-dev openssl libffi-dev zlib1g-dev
+      - apt-get install -y python3-pip python3-dev
+      - add-apt-repository ppa:jonathonf/python-3.6
+      - apt-get update
+      - apt-get install python3.6
+      - pip3 install --upgrade awscli
+      - pip3 install --upgrade pip
   pre_build:
       commands:
         - TAG="$REPOSITORY_NAME.$REPOSITORY_BRANCH.$ENVIRONMENT_NAME.$(date +%Y-%m-%d.%H.%M.%S).$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)"
         - sed -i 's@CONTAINER_IMAGE@'"$REPOSITORY_URI:$TAG"'@' simple_jwt_api.yml
         - $(aws ecr get-login --no-include-email)
         - export KUBECONFIG=$HOME/.kube/config
-        - pip install -r requirements.txt
-        - pip install typing
-        - pip install pytest
-        - python test_main.py
+        - pip3 install -r requirements.txt
+        - pip3 install typing
+        - pip3 install pytest
+        - python3 test_main.py
   build:
     commands:
         - docker build --tag $REPOSITORY_URI:$TAG .
