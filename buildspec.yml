@@ -22,7 +22,6 @@ phases:
       - tar xvf Python-3.6.7.tgz
       - cd Python-3.6.7/
       - ./configure --enable-optimizations --with-ensurepip=install
-      - make -j 8
       - make altinstall
       - python3.6 -V
       - which python3.6
