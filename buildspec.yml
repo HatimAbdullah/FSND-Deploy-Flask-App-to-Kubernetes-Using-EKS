@@ -31,7 +31,7 @@ phases:
         - pip install -r requirements.txt
         - pip install typing
         - pip install pytest
-        - python3.6 test_main.py
+        - python test_main.py
   build:
     commands:
         - docker build --tag $REPOSITORY_URI:$TAG .
