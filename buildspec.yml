@@ -24,7 +24,7 @@ phases:
       - apt-get install -y python3.6
       - ls /usr/bin/python*
       - update-alternatives --install /usr/bin/python python /usr/bin/python3.4 1
-      - update-alternatives --install /usr/bin/python python /usr/local/bin/python3.6 2
+      - update-alternatives --install /usr/bin/python python /usr/bin/python3.6 2
       - pip3 install --upgrade awscli
       - pip3 install --upgrade pip
   pre_build:
