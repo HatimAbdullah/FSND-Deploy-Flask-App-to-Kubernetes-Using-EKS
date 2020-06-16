@@ -27,9 +27,10 @@ phases:
       - which python3.6
       - ls /usr/bin/python*
       - update-alternatives --install /usr/bin/python python /usr/bin/python3.4 1
-      - update-alternatives --install /usr/bin/python python /usr/bin/python3.6 2
+      - update-alternatives --install /usr/bin/python python /usr/local/bin/python3.6 2
       - pip3 install --upgrade awscli
       - pip3 install --upgrade pip
+      - cd 
   pre_build:
       commands:
         - TAG="$REPOSITORY_NAME.$REPOSITORY_BRANCH.$ENVIRONMENT_NAME.$(date +%Y-%m-%d.%H.%M.%S).$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)"
