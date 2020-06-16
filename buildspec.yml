@@ -20,8 +20,8 @@ phases:
       - apt-get update && apt-get -y install jq python3.6
       - curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
       - python get-pip.py
-      - pip3 install --upgrade awscli
-      - pip3 install --upgrade pip
+      - pip install --upgrade awscli
+      - pip install --upgrade pip
   pre_build:
       commands:
         - TAG="$REPOSITORY_NAME.$REPOSITORY_BRANCH.$ENVIRONMENT_NAME.$(date +%Y-%m-%d.%H.%M.%S).$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)"
